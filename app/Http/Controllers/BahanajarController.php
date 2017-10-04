@@ -13,8 +13,11 @@ class BahanajarController extends Controller
 {
      public function index(Request $request)
     {
-        $bahanajars = Bahanajar::orderBy('id','DESC')
-        ->paginate(5);
+        $bahanajars=Bahanajar::leftjoin('jurusan','jurusan.id','=','bahanajar.nama_jurusan')
+                                ->leftjoin('prodi','prodi.id','=','bahanajar.prodi')
+                                ->select('bahanajar.*','jurusan.nama_jurusan as namjur', 'prodi.nama_prodi as nampro')
+                                ->get();
+
         return view('bahanajar.index',compact('bahanajars'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -65,8 +68,7 @@ public function store(Request $request)
         $bahanajar->tahun = $request->input('tahun');
         $bahanajar->save();
 
-        BahanAjar::create($request->all());
-
+        
         return redirect()->route('bahanajar.index')
                         ->with('success','BahanAjar created successfully');
     }

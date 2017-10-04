@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Dashboard - Ace Admin</title>
+		<title>SI P3AI</title>
 
 		<meta name="description" content="top menu &amp; navigation" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -43,7 +43,7 @@
 		<![endif]-->
 	</head>
 
-	<body class="skin-2">
+	<body class="skin-3">
 		<div id="navbar" class="navbar navbar-default ace-save-state">
 			<div class="navbar-container ace-save-state" id="navbar-container">
 				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
@@ -131,21 +131,21 @@
                     <li><a href="{{ route('users.index') }}"><i class="menu-icon fa fa-eye"></i>User</a></li>
                     <li><a href="{{ route('roles.index') }}"><i class="menu-icon fa fa-cogs"></i>Roles</a></li>
                     <li><a href="{{ route('dosen.index') }}"><i class="menu-icon fa fa-users"></i>Data Dosen</a></li>
+                    <li><a href="{{ route('kelengkapan.index')}}"><i class="menu-icon fa fa-users"></i>Kelengkapan Dosen</a></li>
 
                     <li><a href="{{ route('asessor.index')}}"><i class="menu-icon fa fa-users"></i>Data Asessor</a></li>
-                    <li><a href="{{ route('rps.index')}}"><i class="menu-icon fa  fa-book"></i>RPS</a></li>		
-                    <li><a href="{{ route('kurikulum.index')}}"><i class="menu-icon fa fa-folder-open"></i>Data Kurikulum</a><li>
-                    <li><a href="{{ route('bahanajar.index')}}"><i class="menu-icon fa  fa-book"></i>Data Bahan Ajar</a></li>		
+                   <!-- <li><a href="{{ route('rps.index')}}"><i class="menu-icon fa  fa-book"></i>RPS</a></li>		 -->
+                    <li><a href="{{ route('kurikulum.index')}}"><i class="menu-icon fa fa-folder-open"></i>Kurikulum Terbaru</a></li>
                     <li><a href="{{ route('bkd.index')}}"><i class="menu-icon fa fa-desktop"></i>Cek BKD Dosen</a></li>
                     <li><a href="{{ route('serdos.index')}}"><i class="menu-icon fa fa-list"></i>Sertifikasi Dosen</a></li>
-                    <li><a href="{{ route('jurusan.index')}}"><i class="menu-icon fa fa-desktop"></i>Data Jurusan</a></li>
                     <li><a href="{{ route('prodi.index')}}"><i class="menu-icon fa fa-desktop"></i>Data Prodi</a></li>
+                    <li><a href="{{ route('jurusan.index')}}"><i class="menu-icon fa fa-desktop"></i> Jurusan</a></li>
 
                   
 
                     <li class="">
 						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-desktop"></i>
+							<i class="menu-icon fa fa-list"></i>
 							<span class="menu-text">
 								Laporan
 							</span>
@@ -171,12 +171,48 @@
 							<li class="">
 								<a href="{{route('rekapbkd.selectbkd')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Laporan Bkd
+									Laporan BKD
 								</a>
 
 								<b class="arrow"></b>
 							</li>
 
+						</ul>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Laporan Kelengkapan BKD
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+						</ul>
+
+
+						<ul class="submenu">
+							<li class="">
+								<a href="{{route('rekapdataasessor.selectdataasessor')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Laporan Data Asessor
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+						</ul>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="#">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Laporan Asessor
+								</a>
+
+								<b class="arrow"></b>
+							</li>
 						</ul>
 
 					</li>

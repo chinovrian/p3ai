@@ -39,7 +39,6 @@
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th></th>
                         <th>1</th>
                         <th>2</th>
                         <th>3</th>
@@ -52,8 +51,9 @@
                         <th></th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
-                     @foreach ($bahanajars as $key => $bahanajar)
+                     @foreach ($bahanajars as $bahanajar)
                     <tr>
                         <td>{{ ++$i }}</td>
                         <td>{{ $bahanajar->judul_bahanajar }}</td>
@@ -67,8 +67,8 @@
                         <td>{{ $bahanajar->dosen_anggota7 }}</td>
                         <td>{{ $bahanajar->dosen_anggota8 }}</td>
                         <td>{{ $bahanajar->dosen_anggota9 }}</td>
-                        <td>{{ $bahanajar->nama_jurusan }}</td>
-                        <td>{{ $bahanajar->prodi }}</td>
+                        <td>{{ $bahanajar->namjur }}</td>
+                        <td>{{ $bahanajar->nampro }}</td>
                         <td>{{ $bahanajar->tahun }}</td>
                         <td>
                             
@@ -88,7 +88,6 @@
                 
                 </table>
               </div>
-     {!! $bahanajars->render() !!}
             </div>
           </div>
          </div>

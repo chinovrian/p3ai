@@ -10,9 +10,12 @@ class Kurikulum extends Model
 
 
     public $fillable =[
-    	'judul_kurikulum','nama_jurusan','prodi',
-    	'file_kurikulum','tahun'
+    	'smt','matakuliah','judul_kurikulum',
+    	'sks','nama_jurusan','prodi',
+    	'tahun','file_kurikulum','rps'
         
     ];
 
-    public $timestamps = true;
+
+    public $timestamps = false;
+}

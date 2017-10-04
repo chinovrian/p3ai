@@ -7,6 +7,7 @@ use App\Bkd;
 use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class BkdController extends Controller
 {
@@ -63,14 +64,31 @@ class BkdController extends Controller
         $bkdsm=$request->input('sm');
         $bkdket=$request->input('kt');
 
-        $bkd=DB::table('bkddosen')
+        $bkddosen=DB::table('bkddosen')
         ->select('bkddosen.nama_dosen','bkddosen.keterangan')
         ->where('bkddosen.tahun',$bkdth)
         ->where('bkddosen.smt',$bkdsm)
         ->where('bkddosen.keterangan',$bkdket)
         ->get();
 
-        return view('rekapbkd.filebkd',compact('bkd','bkdth','bkdsm','bkdket'));
+        return view('rekapbkd.filebkd',compact('bkddosen','bkdth','bkdsm','bkdket'));
        
+    }
+
+    public function setpdfbkd($t,$s,$k)
+    {
+        $th = Bkd::where('tahun',$t)->first();
+        $smtt = Bkd::where('smt',$s)->first();
+        $ket= Bkd::where('keterangan',$k)->first();
+
+        $bkddosen=Bkd::select('bkddosen.nama_dosen','bkddosen.keterangan')
+        ->where('bkddosen.tahun',$t)
+        ->where('bkddosen.smt',$s)
+        ->where('bkddosen.keterangan',$k)
+        ->get();
+
+        $pdf=PDF::loadView('rekapbkd.pdfbkd',compact('bkddosen','th','smtt','ket'))->setPaper('a4','potrait');
+
+        return $pdf->download('rekapbkd.pdf');
     }
 }

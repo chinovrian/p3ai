@@ -10,6 +10,7 @@ use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Barryvdh\DomPDF\Facade as PDF; 
 
 class AsessorController extends Controller
 {
@@ -128,5 +129,39 @@ public function store(Request $request)
     {
         Asessor::find($id)->delete();
         return redirect()->route('asessor.index');
+    }
+
+    //report data asessor
+    public function selectdataasessor()
+    {
+        $asessor=DB::table('asessor')->groupBy('tahun')->value('tahun');
+
+        return view('rekapasessor.selectdataasessor',['th'=>$asessor]);
+    }
+
+
+    public function filterdatass(Request $request)
+    {
+        $asessorth=$request->input('th');
+
+
+        $asessor=Asessor::select('asessor.nama_asessor','asessor.tahun')
+                ->where('asessor.tahun',$asessorth)
+                ->get();
+
+            return view('rekapasessor.filedataasessor',compact('asessor','asessorth'));
+    }
+
+    public function setpdfass($t)
+    {
+        $th=Asessor::where('tahun',$t)->first();
+
+        $asessor=Asessor::select('asessor.nama_asessor','asessor.tahun')
+            ->where('asessor.tahun',$t)
+            ->get();
+
+            $pdf=PDF::loadView('rekapasessor.pdfdataasessor',compact('asessor','th'))->setPaper('a4','potrait');
+
+            return $pdf->download('rekapasessor.pdf');
     }
 }

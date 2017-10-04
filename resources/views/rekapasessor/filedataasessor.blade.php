@@ -5,7 +5,7 @@
 <div class="page-content">
   <div class="row">
 	<div class="page-header">
-		<h2>Data Peserta  Sertifiksi Dosen Tahun {{$bkdth}} Semester {{$bkdsm}}
+		<h2>Data Asessor 
 			
 		</h2>
 <?php
@@ -16,21 +16,21 @@
 	<div class="row">
 		<div class="col-xs-12">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
-		<a class="btn btn-succses" href="{{route('rekapbkd.setpdfbkd',[$bkdth,$bkdsm,$bkdket])}}">
+		//<a class="btn btn-succses" href="{{route('rekapdataasessor.setpdfass',[$asessorth])}}">
 		<i class="fa fa-download"></i>Report PDF
 		</a>
 			<!-- PAGE CONTENT BEGINS -->
 			<table id="simple-table" class="table  table-bordered table-hover">
 			<tr>
 				<th>No</th>
-				<th>Nama Dosen</th>
-				<th>Keterangan </th>
+				<th>Nama Asessor</th>
+				<th>Tahun </th>
 			</tr>
-				@foreach ($bkddosen as $key => $bkddosen)
+				@foreach ($asessor as $key => $asessor)
 			<tr>
 				<td> {{$i=$i+1}}</td>
-				<td>{{ $bkddosen->nama_dosen }}</td>
-				<td>{{ $bkddosen->keterangan}}</td>
+				<td>{{ $asessor->nama_asessor }}</td>
+				<td>{{ $asessor->tahun}}</td>
 			</tr>
 
 				  @endforeach

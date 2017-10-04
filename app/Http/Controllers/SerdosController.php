@@ -132,8 +132,8 @@ public function store(Request $request)
             'smt_sertifikasi'=>'required',
             ]);
 
-        $serdos= new Serdos();
-        // $serdos = Serdos::find($id);
+        //$serdos= new Serdos();
+         $serdos = Serdos::find($id);
         $serdos->nip_dosen = $request->input('nip_dosen');
         $serdos->nama_dosen = $request->input('nama_dosen');
         $serdos->nama_asessor1 = $request->input('nama_asessor1');
@@ -280,6 +280,7 @@ public function cek($id)
 
             return $pdf->download('rekappeserta.pdf');
      }
+
 
 
 

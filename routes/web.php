@@ -66,6 +66,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('kurikulum/{id}/edit',['as'=>'kurikulum.edit','uses'=>'KurikulumController@edit']);
 	Route::patch('kurikulum/{id}',['as'=>'kurikulum.update','uses'=>'KurikulumController@update']);
 	Route::delete('kurikulum/{id}',['as'=>'kurikulum.destroy','uses'=>'KurikulumController@destroy']);
+	Route::get('/kurikulumfile/{filename}',[ 'uses'=>'KurikulumController@getkuri','as'=>'kuri.file']);
+
 
 	//bahanajar
 
@@ -107,6 +109,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::patch('jurusan/{id}',['as'=>'jurusan.update','uses'=>'JurusanController@update']);
 	Route::delete('jurusan/{id}',['as'=>'jurusan.destroy','uses'=>'JurusanController@destroy']);
 	Route::delete('jurusan/{id}',['as'=>'jurusan.destroy','uses'=>'JurusanController@destroy']);
+
 	//prodi
 	Route::get('prodi',['as'=>'prodi.index','uses'=>'ProdiController@index']);	
 	Route::get('prodi/create',['as'=>'prodi.create','uses'=>'ProdiController@create']);
@@ -127,6 +130,15 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::delete('bkd/{id}/del',['as'=>'bkd.delete','uses'=>'BkdController@destroy']);
 
 
+	//kelengkapan
+	Route::get('kelengkapan',['as'=>'kelengkapan.index','uses'=>'KelengkapanController@index']);
+	Route::get('kelengkapan/create/kel',['as'=>'kelengkapan.create','uses'=>'KelengkapanController@create']);
+	Route::post('kelengkapan/create',['as'=>'kelengkapan.store','uses'=>'KelengkapanController@store']);
+	Route::get('kelengkapan/{id}/edit',['as'=>'kelengkapan.edit','uses'=>'KelengkapanController@edit']);
+	Route::patch('kelengkapan/{id}',['as'=>'kelengkapan.update','uses'=>'KelengkapanController@update']);
+	Route::delete('kelengkapan/{id}/del',['as'=>'kelengkapan.destroy','uses'=>'KelengkapanController@destroy']);
+	Route::get('/kelengkapan/{filename}',[ 'uses'=>'KelengkapanController@getkeleng','as'=>'kelengkapan.file']);
+
 	//reportpeserta
 	Route::get('report/selectpeserta',['as'=>'rekappeserta.selectpeserta','uses'=>'SerdosController@selectpeserta']);
 	Route::post('report/selectpesrta/filter',['as'=>'rekappeserta.filterpeserta','uses'=>'SerdosController@filterpeserta']);
@@ -135,7 +147,13 @@ Route::group(['middleware' => ['auth']], function() {
 	//reportbkd
 	Route::get('report/selectbkd',['as'=>'rekapbkd.selectbkd','uses'=>'BkdController@selectbkd']);
 	Route::post('report/selectbkd/filter',['as'=>'rekapbkd.filterbkd','uses'=>'BkdController@filterbkd']);
-	//Route::get('report/selectbkdPdf/{t}/{s}/{kt}',['as'=>'rekapbkd.setpdfbkd','uses'=>'BkdController@setpdfbkd']);
+	Route::get('report/selectbkdPdf/{t}/{s}/{kt}',['as'=>'rekapbkd.setpdfbkd','uses'=>'BkdController@setpdfbkd']);
+
+	//reportdataasessor
+	Route::get('report/selectdataasessor',['as'=>'rekapdataasessor.selectdataasessor','uses'=>'AsessorController@selectdataasessor']);
+	Route::post('report/selectdataasessor/filter',['as'=>'rekapdataasessor.filterdataass','uses'=>'AsessorController@filterdatass']);
+	Route::get('report/selectdataasessor/{t}',['as'=>'rekapdataasessor.setpdfass','uses'=>'AsessorController@setpdfass']);
+
 
 });
 
