@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.indexx')
 
 @section('content')
       <div class="panel panel-default">
@@ -10,7 +10,7 @@
 
 			<!-- PAGE CONTENT BEGINS -->
 			
-				{!! Form::model($dosen, ['method' => 'patch','route' => ['dosen.update', $dosen->id]]) !!}
+				{!! Form::model($dosen, ['method' => 'patch','route' => ['dosen.update', $dosen->id,'files'=>true]]) !!}
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label no-padding-right">No Sertifikat</label>
@@ -227,12 +227,8 @@
 
 					<div class="col-sm-9">
 						<div class="pos-rel">
-							 {!! Form::email('email_dosen', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
-							 @if ($errors->has('email_dosen'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email_dosen') }}</strong>
-                                    </span>
-                              @endif
+							 {!! Form::email('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+							
                               <br/>
 						</div>
 

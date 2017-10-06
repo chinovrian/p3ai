@@ -101,7 +101,7 @@ public function store(Request $request)
         $rps->dosen_pengampu = $request->input('dosen_pengampu');
         $rps->nama_jurusan = $request->input('nama_jurusan');
         $rps->prodi = $request->input('prodi');
-        //$rps->file_rps= $request->input('file_rps'); 
+        
         $rps->tahun = $request->input('tahun');
 
 

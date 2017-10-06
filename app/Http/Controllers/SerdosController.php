@@ -281,7 +281,40 @@ public function cek($id)
             return $pdf->download('rekappeserta.pdf');
      }
 
+     //reportasessordosen
+     public function selectasessordosen()
+    {
+        $asessors=DB::table('asessor')->get();
+        $serdos=DB::table('serdos')->groupBy('tahun_sertifikasi')->value('tahun_sertifikasi');
+        $serdoss=DB::table('serdos')->groupBy('smt_sertifikasi')->value('smt_sertifikasi');
 
+        return view('rekapasessordosen.selectasessordosen',['nm'=>$asessors,'th'=>$serdos,'smt'=>$serdoss]);
+
+
+
+    }
+     public function filterassdos(Request $request)
+     {
+      
+        $serdosth=$request->input('th');
+        $serdossmt=$request->input('smt');
+         $asessornm=$request->input('nm');
+
+        $serdos=Serdos::leftjoin('asessor','serdos.nama_asessor1','=','asessor.nama_asessor')
+                ->select('serdos.nama_dosen', 'serdos.passw as Password')
+                ->where('serdos.tahun_sertifikasi',$serdosth)
+                ->where('serdos.smt_sertifikasi',$serdossmt)
+                ->where('asessor.id',$asessornm)
+                ->get();
+
+
+              
+      return view('rekapasessordosen.fileasessordosen',compact('serdos','serdosth','serdossmt','asessornm','asessor'));
+
+
+     }
+
+     
 
 
 }

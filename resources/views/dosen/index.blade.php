@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.indexx')
  
 @section('content')
 <div class="page-content">
@@ -42,7 +42,7 @@
 						<td>{{ $dosen->nip_dosen }}</td>
 						<td>{{ $dosen->nama_dosen }}</td>
 						<td>{{ $dosen->namjur }}</td>
-						<td>{{ $dosen->email_dosen}}</td>
+						<td>{{ $dosen->email}}</td>
 						<td>{{ $dosen->telepon }}</td>
 						
 

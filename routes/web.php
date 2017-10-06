@@ -12,10 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Home');
 });
 
+Route::post('/registrasi',['as'=>'registrasi', 'uses'=>'HomeController@register']);
 Route::auth();
+
 
 Route::group(['middleware' => ['auth']], function() {
 
@@ -108,7 +110,6 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('jurusan/{id}/edit',['as'=>'jurusan.edit','uses'=>'JurusanController@edit']);
 	Route::patch('jurusan/{id}',['as'=>'jurusan.update','uses'=>'JurusanController@update']);
 	Route::delete('jurusan/{id}',['as'=>'jurusan.destroy','uses'=>'JurusanController@destroy']);
-	Route::delete('jurusan/{id}',['as'=>'jurusan.destroy','uses'=>'JurusanController@destroy']);
 
 	//prodi
 	Route::get('prodi',['as'=>'prodi.index','uses'=>'ProdiController@index']);	
@@ -139,6 +140,42 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::delete('kelengkapan/{id}/del',['as'=>'kelengkapan.destroy','uses'=>'KelengkapanController@destroy']);
 	Route::get('/kelengkapan/{filename}',[ 'uses'=>'KelengkapanController@getkeleng','as'=>'kelengkapan.file']);
 
+	//tahun
+	Route::get('tahun',['as'=>'tahun.index','uses'=>'TahunController@index']);	
+	Route::get('tahun/create',['as'=>'tahun.create','uses'=>'TahunController@create']);
+	Route::post('tahun/create',['as'=>'tahun.store','uses'=>'TahunController@store']);
+	Route::get('tahun/{id}',['as'=>'tahun.show','uses'=>'TahunController@show']);
+	Route::get('tahun/{id}/edit',['as'=>'tahun.edit','uses'=>'TahunController@edit']);
+	Route::patch('tahun/{id}',['as'=>'tahun.update','uses'=>'TahunController@update']);
+	Route::delete('tahun/{id}',['as'=>'tahun.destroy','uses'=>'TahunController@destroy']);
+
+	//permission
+
+	Route::get('permissionrole',['as'=>'permissionrole.index','uses'=>'PermissionRoleController@index']);
+	Route::get('roleuser',['as'=>'roleuser.index','uses'=>'RoleUserController@index']);
+	Route::get('permission',['as'=>'permission.index','uses'=>'PermissionController@index']);
+	Route::get('permission/create',['as'=>'permission.create','uses'=>'PermissionController@create']);
+	Route::post('permission/create',['as'=>'permission.store','uses'=>'PermissionController@store']);
+	Route::get('permission/{id}',['as'=>'permission.show','uses'=>'PermissionController@show']);
+	Route::get('permission/{id}/edit',['as'=>'permission.edit','uses'=>'PermissionController@edit']);
+	Route::patch('permission/{id}/edit',['as'=>'permission.update','uses'=>'PermissionController@update']);
+	Route::patch('permission/{id}',['as'=>'permission.destroy','uses'=>'PermissionController@destroy']);
+	Route::delete('permission/{id}',['as'=>'permission.destroy','uses'=>'PermissionController@destroy']);
+
+
+	//user
+
+	Route::get('users',['as'=>'users.index','uses'=>'UserController@index']);
+	Route::get('users/create',['as'=>'users.create','uses'=>'UserController@create']);
+	Route::post('users/create',['as'=>'users.create','uses'=>'UserController@create']);
+	Route::post('users/handle-index',['as'=>'users.handleIndex','uses'=>'UserController@handleIndex','middleware' => ['role:Admin']]);
+	Route::post('users/create',['as'=>'users.store','uses'=>'UserController@store']);
+	Route::get('users/{id}',['as'=>'users.show','uses'=>'UserController@show']);
+	Route::get('users/{id}/edit',['as'=>'users.edit','uses'=>'UserController@edit']);
+	Route::patch('users/{id}',['as'=>'users.update','uses'=>'UserController@update']);
+	Route::delete('users/{id}',['as'=>'users.destroy','uses'=>'UserController@destroy']);
+
+
 	//reportpeserta
 	Route::get('report/selectpeserta',['as'=>'rekappeserta.selectpeserta','uses'=>'SerdosController@selectpeserta']);
 	Route::post('report/selectpesrta/filter',['as'=>'rekappeserta.filterpeserta','uses'=>'SerdosController@filterpeserta']);
@@ -153,6 +190,13 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('report/selectdataasessor',['as'=>'rekapdataasessor.selectdataasessor','uses'=>'AsessorController@selectdataasessor']);
 	Route::post('report/selectdataasessor/filter',['as'=>'rekapdataasessor.filterdataass','uses'=>'AsessorController@filterdatass']);
 	Route::get('report/selectdataasessor/{t}',['as'=>'rekapdataasessor.setpdfass','uses'=>'AsessorController@setpdfass']);
+
+	//reportasessordosen
+	Route::get('report/selectasessordosen',['as'=>'rekapasessordosen.selectasessordosen', 'uses'=>'SerdosController@selectasessordosen']);
+	Route::post('report/selectasessordosen/filter',['as'=>'rekapasessordosen.filterdataass','uses'=>'SerdosController@filterassdos']);
+	Route::get('report/selectasessordosen/{t}',['as'=>'rekapasessordosen.setpdfass','uses'=>'SerdosController@setpdfassdos']);
+
+
 
 
 });

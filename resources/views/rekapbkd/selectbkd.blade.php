@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.indexx')
 
 @section('content')
  <div class="panel panel-default">

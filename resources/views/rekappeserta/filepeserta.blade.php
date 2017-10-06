@@ -1,5 +1,5 @@
 
-@extends('layouts.index')
+@extends('layouts.indexx')
  
 @section('content')
 <div class="page-content">

@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Zizaco\Entrust\EntrustRole;
 
-class Role extends Model
+class Role extends EntrustRole
 {
     protected $table ='roles';
     
@@ -22,4 +22,5 @@ class Role extends Model
     public function roleuser ()
     {
     	return $this->hasMany('RoleUser::class');
+    }
 }

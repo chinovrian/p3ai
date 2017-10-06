@@ -1,7 +1,7 @@
-@extends('layouts.index')
+@extends('layouts.indexx')
 
 @section('content')
-      <div class="panel panel-default">
+      <div class="page-content">
           <div class="panel-heading"><h4>Isi Data Dosen</h4></div>
           <div class="row">
           <div class="col-md-6 col-sm-9 col-xs-12">

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
+use App\Dosen;
+use Auth;
 use DB;
 use Hash;
 use App\Http\Requests;
@@ -40,6 +42,20 @@ class UserController extends Controller
         $user = User::create($input);
         foreach ($request->input('roles') as $key => $value) {
             $user->attachRole($value);
+        }
+
+        if($user->save())
+        {
+            foreach ($request->input('roles') as $key => $value) {
+               if ($value==4)
+               {
+                $dosen=new Dosen();
+                $id=DB::table('users')->max('id');
+                $dosen->user_id =$id;
+                $dosen->email=$user->email;
+                $dosen->save();
+               }
+            }
         }
 
         return redirect()->route('users.index')

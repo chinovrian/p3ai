@@ -116,4 +116,3 @@ public function store(Request $request)
         return redirect()->route('kelengkapan.index');
     }
 }
-

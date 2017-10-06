@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.indexx')
 
 @section('content')
 <div class="container">
@@ -11,11 +11,11 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label for="username" class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -23,7 +23,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </d
+                        </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
@@ -38,6 +38,9 @@
                                 @endif
                             </div>
                         </div>
+
+            
+
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

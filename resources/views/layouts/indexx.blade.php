@@ -3,28 +3,28 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Top Menu Style - Ace Admin</title>
+		<title>SI P3AI</title>
 
 		<meta name="description" content="top menu &amp; navigation" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<!-- bootstrap & fontawesome -->
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
 		<!-- page specific plugin styles -->
 
 		<!-- text fonts -->
-		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+		<link rel="stylesheet" href="/assets/css/fonts.googleapis.com.css" />
 
 		<!-- ace styles -->
-		<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+		<link rel="stylesheet" href="/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 
 		<!--[if lte IE 9]>
 			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
 		<![endif]-->
-		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="/assets/css/ace-rtl.min.css" />
 
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -43,77 +43,62 @@
 		<![endif]-->
 	</head>
 
-	<body class="skin-2">
+	<body class="no-skin">
 		<div id="navbar" class="navbar navbar-default    navbar-collapse       h-navbar ace-save-state">
 			<div class="navbar-container ace-save-state" id="navbar-container">
 				<div class="navbar-header pull-left">
 					
-						<big>
-							<i class="fa fa-leaf"></i>
-							Sistem Informasi P3AI PNP
-						</big>
-					</a>
-
-					<button class="pull-right navbar-toggle navbar-toggle-img collapsed" type="button" data-toggle="collapse" data-target=".navbar-buttons,.navbar-menu">
-						<span class="sr-only">Toggle user menu</span>
-
-						<img src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
-					</button>
-
-					<button class="pull-right navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#sidebar">
-						<span class="sr-only">Toggle sidebar</span>
-
-						<span class="icon-bar"></span>
-
-						<span class="icon-bar"></span>
-
-						<span class="icon-bar"></span>
-					</button>
-				</div>
-
-				<div class="navbar-buttons navbar-header pull-right" role="navigation">
-					<ul class="nav ace-nav">
+						<h3>Sistem Informasi P3AI PNP</h3>
+							
 						
-						<li class="light-blue dropdown-modal">
-
-							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-								</li>
-							</ul>
-
-							<li>
-									 @if (Auth::guest())
-                        			<li><a href="{{ url('/login') }}">Login</a></li>
-                       				<li><a href="{{ url('/register')}}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->username }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    @endif
-						</li>
-					</ul>
+					
 				</div>
-			</div>
+				</div>
+				
+
+
+				<div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                        &nbsp;
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Authentication Links -->
+                        @if (Auth::guest())
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
+                        @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->username }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
 
 		<nav role="navigation" class="navbar-menu pull-left collapse navbar-collapse">
 			<ul class="nav navbar-nav">
 				<li><ul class="dropdown-menu dropdown-light-blue dropdown-caret"></ul></li>
 					</ul>
 
-					<form class="navbar-form navbar-left form-search" role="search">
-						<div class="form-group">
-							<input type="text" placeholder="search" />
-						</div>
-
-						<button type="button" class="btn btn-mini btn-info2">
-							<i class="ace-icon fa fa-search icon-only bigger-110"></i>
-						</button>
-					</form>
+					
 				</nav>
 			</div><!-- /.navbar-container -->
 		</div>
@@ -142,26 +127,229 @@
 				</div><!-- /.sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
-					<li><a href="{{ url('/') }}"><i class="menu-icon fa  fa-home"></i>Home</a></li>
-                    <li><a href="{{ route('users.index') }}"><i class="menu-icon fa fa-eye"></i>User</a></li>
-                    <li><a href="{{ route('roles.index') }}"><i class="menu-icon fa fa-cogs"></i>Roles</a></li>
-                    <li><a href="{{ route('dosen.index') }}"><i class="menu-icon fa fa-users"></i>Dosen</a></li>
+                    <li><a href="{{ url('/') }}">
+                    	<i class="menu-icon fa  fa-home">
+                    	</i>Home</a>
+                    </li>
 
-                    <li><a href="{{ route('asessor.index')}}"><i class="menu-icon fa fa-users"></i>Asessor</a></li>
-                    <li><a href="{{ route('rps.index')}}"><i class="menu-icon fa  fa-book"></i>RPS</a></li>		
-                    <li><a href="{{ route('kurikulum.index')}}"><i class="menu-icon fa fa-folder-open"></i>Kurikulum</a><li>	
+                     @if (Auth::check())
+                     @if (Auth::user()->roles()->first()->name == "Admin")
+                   
+                   
+                <li class=" open hover">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-list"></i>
+							<span class="menu-text">
+								Admin
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+						<b class="arrow"></b>
+
+
+					<ul class="submenu">
+							 <li class="hover">
+							 <a href="{{ route('users.index') }}">
+							 <i class="menu-icon fa fa-caret-right">	
+							 </i>User</a>
+							</li>
+						
+
+					
+							<li class="hover">
+								<a href="{{ route('roles.index') }}">
+								<i class="menu-icon fa fa-caret-right"></i>Roles</a>
+							</li>
+							 </li>
+					
+						 	<li class="hover">
+							 	<a href="{{ route('tahun.index')}}">
+							 	<i class="menu-icon fa fa-caret-right">
+							 	</i> Tahun</a>
+							 </li>
+
+					</ul>
+				</li>
+
+
+
+                <li class="open hover">
+                	<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-list"></i>
+							<span class="menu-text">
+								Dosen
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+						<b class="arrow"></b>
+
+					<ul class="submenu">
+							 <li class="hover">
+							 <a href="{{ route('dosen.index') }}">
+							 <i class="menu-icon fa fa-caret-right">	
+							 </i>Data Dosen</a>
+							</li>
+
+							 <li class="hover">
+							 <a href="{{ route('kelengkapan.index')}}">
+							 <i class="menu-icon fa fa-caret-right">	
+							 </i>Kelengkapan Dosen</a>
+							</li>
+					</ul>
+                </li>
+        
+                    <li><a href="{{ route('asessor.index')}}"><i class="menu-icon fa fa-users"></i>Data Asessor</a></li>
+                   <!-- <li><a href="{{ route('rps.index')}}"><i class="menu-icon fa  fa-book"></i>RPS</a></li>		 -->
+                    <li><a href="{{ route('kurikulum.index')}}"><i class="menu-icon fa fa-folder-open"></i>Kurikulum Terbaru</a></li>
+                    <li><a href="{{ route('bkd.index')}}"><i class="menu-icon fa fa-desktop"></i>Cek BKD Dosen</a></li>
                     <li><a href="{{ route('serdos.index')}}"><i class="menu-icon fa fa-list"></i>Sertifikasi Dosen</a></li>
-                    <li><a href="{{ route('jurusan.index')}}"><i class="menu-icon fa fa-desktop"></i>Jurusan</a></li>
-                    <li><a href="{{ route('prodi.index')}}"><i class="menu-icon fa fa-desktop"></i>Prodi</a></li>
+                    <li><a href="{{ route('prodi.index')}}"><i class="menu-icon fa fa-desktop"></i>Data Prodi</a></li>
+                    <li><a href="{{ route('jurusan.index')}}"><i class="menu-icon fa fa-desktop"></i> Jurusan</a></li>
+                   
 
-                    <li><a href="{{route('serdos.selectdosen')}}"><i class="menu-icon fa fa-desktop"></i>Report</a></li>
-								
+
+                  
+
+                <li class="open hover">
+					<a href="#" class="dropdown-toggle">
+						<i class="menu-icon fa fa-list"></i>
+						<span class="menu-text">
+							Laporan
+						</span>
+						<b class="arrow fa fa-angle-down"></b>
+					</a>
+					<b class="arrow"></b>
+
+
+					<ul class="submenu">
+							<li class="hover">
+								<a href="{{route('rekappeserta.selectpeserta')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Laporan Peserta Serdos
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="hover">
+								<a href="{{route('rekapbkd.selectbkd')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Laporan BKD
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="hover">
+								<a href="{{route('rekapdataasessor.selectdataasessor')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Laporan Data Asessor
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="hover">
+								<a href="{{route('rekapasessordosen.selectasessordosen')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Laporan Asessor
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+					</ul>
+
+				</li>
+				@endif
+				@if (Auth::user()->roles()->first()->name == "Kap3ai")
+
+				<li class="open hover">
+					<a href="#" class="dropdown-toggle">
+						<i class="menu-icon fa fa-list"></i>
+						<span class="menu-text">
+							Laporan
+						</span>
+						<b class="arrow fa fa-angle-down"></b>
+					</a>
+					<b class="arrow"></b>
+
+
+					<ul class="submenu">
+							<li class="hover">
+								<a href="{{route('rekappeserta.selectpeserta')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Laporan Peserta Serdos
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="hover">
+								<a href="{{route('rekapbkd.selectbkd')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Laporan BKD
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="hover">
+								<a href="{{route('rekapdataasessor.selectdataasessor')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Laporan Data Asessor
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="hover">
+								<a href="{{route('rekapasessordosen.selectasessordosen')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Laporan Asessor
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+					</ul>
+
+				</li>
+				@endif
+
+				@if (Auth::user()->roles()->first()->name == "Dosen")
+
+				 <li class="open hover">
+                	<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-list"></i>
+							<span class="menu-text">
+								Dosen
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+						<b class="arrow"></b>
+
+					<ul class="submenu">
+							 <li class="hover">
+							 <a href="{{ route('dosen.show',Auth::id())}}">
+							 <i class="menu-icon fa fa-caret-right">	
+							 </i>Data Dosen</a>
+							</li>
+
+							 <li class="hover">
+							 <a href="{{ route('kelengkapan.index')}}">
+							 <i class="menu-icon fa fa-caret-right">	
+							 </i>Kelengkapan Dosen</a>
+							</li>
+					</ul>
+                </li>
+				@endif     
+				@endif
+
 				</ul>
-						</ul>
-					</li>
-				</ul><!-- /.nav-list -->
-			</div>
 
+			 @yield('content')
 			<div class="main-content">
 				<div class="main-content-inner">
 					<div class="page-content">
@@ -215,7 +403,7 @@
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
-		<script src="assets/js/jquery-2.1.4.min.js"></script>
+		<script src="/assets/js/jquery-2.1.4.min.js"></script>
 
 		<!-- <![endif]-->
 
@@ -223,7 +411,7 @@
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 		<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 

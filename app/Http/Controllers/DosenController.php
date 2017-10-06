@@ -9,8 +9,11 @@ use App\Jurusan;
 use App\Prodi;
 use App\Serdos;
 use App\Asessor;
+use App\kelengkapan;
 use App\Bkd;
+use App\User;
 use DB;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -86,7 +89,7 @@ public function store(Request $request)
         $dosen->jenis = $request->input('jenis');
         $dosen->bdg_ilmu = $request->input('bdg_ilmu');
         $dosen->alamat_dosen = $request->input('alamat_dosen');
-        $dosen->email_dosen = $request->input('email_dosen');
+        $dosen->email = $request->input('email');
         $dosen->telepon = $request->input('telepon');
        // $dosen->save();
         // if ($request->hasFile('foto')) {
@@ -120,13 +123,20 @@ public function store(Request $request)
         $bkd->nama_dosen=$request->input('nama_dosen');
         $bkd->nip_dosen=$request->input('nip_dosen');
         $bkd->save();
+
+        //kelengkapan
+        $kelengkapan->nama_dosen=$request->input('nama_dosen');
+        $kelengkapan->nip_dosen=$request->input('nip_dosen');
+        $kelengkapan->save();
+
         return redirect()->route('dosen.index')
                         ->with('success','Dosen created successfully');
     }
     public function show($id)
     {
 
-        $dosen=Dosen::find($id);
+        // $dosen=Dosen::find($id);
+        $dosen=Dosen::where('user_id','=',$id)->first();
         $dosens=DB::table('dosen')
                 ->join('jurusan','jurusan.id','=','dosen.jurusan_id')
                 ->join('prodi','prodi.id','=','dosen.prodi_id')
@@ -147,23 +157,29 @@ public function store(Request $request)
     {
         $jurusan = Jurusan::pluck('nama_jurusan','id')->all();
          $prodi = Prodi::pluck('nama_prodi','id')->all();
-        $dosen = Dosen::find($id);
+         $dosen=Dosen::where('id','=',$id)->first();
         return view('dosen.edit',compact('dosen','jurusan','prodi'));
     }
     public function update(Request $request, $id)
     {
 
+        $user_id=Dosen::where('id','=',$id)->value('user_id');
+
+        $user =User::find($user_id);
+        $user->email = $request->input('email');
+        $user->save();
+
 
          $this->validate($request, [
-            'no_sertifikat' => 'required',
-            'nip_dosen' => 'required|unique:dosen',
-            'nama_dosen' => 'required',
+            'no_sertifikat',
+            'nip_dosen' ,
+            'nama_dosen' ,
             'nama_pt',
             'alamat_pt',
-            'jurusan_id' => 'required',
-            'prodi_id' => 'required',
-            'jab_fungsional' => 'required',
-            'gol' => 'required',
+            'jurusan_id' ,
+            'prodi_id',
+            'jab_fungsional',
+            'gol' ,
             'tempat_lahir',
             'tanggal_lahir',
             'pend_s1',
@@ -173,12 +189,14 @@ public function store(Request $request)
             'bdg_ilmu',
             'telepon',
             'foto',
-            'tahun',
-            'smt_sertifikasi',
         ]);
 
+        $bkd=new Bkd();
+       $dosen = new Dosen();
+       $serdos=new Serdos();
+       $kelengkapan=new Kelengkapan();
         $dosen = Dosen::find($id);
-      $dosen->no_sertifikat = $request->input('no_sertifikat');
+        $dosen->no_sertifikat = $request->input('no_sertifikat');
         $dosen->nip_dosen = $request->input('nip_dosen');
         $dosen->nama_dosen = $request->input('nama_dosen');
         $dosen->nama_pt = $request->input('nama_pt');
@@ -195,10 +213,9 @@ public function store(Request $request)
         $dosen->jenis = $request->input('jenis');
         $dosen->bdg_ilmu = $request->input('bdg_ilmu');
         $dosen->alamat_dosen = $request->input('alamat_dosen');
-        $dosen->email_dosen = $request->input('email_dosen');
+        $dosen->email = $request->input('email');
         $dosen->telepon = $request->input('telepon');
-        $dosen->tahun = $request->input('tahun');
-        $dosen->smt_sertifikasi = $request->input('smt_sertifikasi');
+        
         // if ($request->hasFile('foto')) {
         //     echo 'foto ado';
         // } else {
@@ -219,6 +236,26 @@ public function store(Request $request)
             $request->foto->storeAs('public',$filename);
         }
         $dosen->save();
+
+        //serdos
+        $serdos->nama_dosen=$request->input('nama_dosen');
+        $serdos->nip_dosen=$request->input('nip_dosen');
+        $serdos->jurusan_id=$request->input('jurusan_id');
+        $serdos->save();
+
+        //bkd
+        $bkd->nama_dosen=$request->input('nama_dosen');
+        $bkd->nip_dosen=$request->input('nip_dosen');
+        $bkd->save();
+
+        //kelengkapan
+        $kelengkapan->nama_dosen=$request->input('nama_dosen');
+        $kelengkapan->nip_dosen=$request->input('nip_dosen');
+        $kelengkapan->save();
+
+        if (Auth::user()->roles()->first()->name == "Dosen") {
+           return redirect()->route('dosen.show',Auth::id())->with('message','profile Dosen updated!');
+        } 
         return redirect()->route('dosen.index')
                         ->with('success','Dosen created successfully');
     }

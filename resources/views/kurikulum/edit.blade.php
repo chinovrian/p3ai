@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.indexx')
 
 @section('content')
       <div class="panel panel-default">
@@ -10,19 +10,14 @@
 
 			<!-- PAGE CONTENT BEGINS -->
 			
-				{!! Form::model($kurikulum, ['method' => 'patch','route' => ['kurikulum.update', $kurikulum->id],'files'=>true]) !!}
-
+				{!! Form::model($kurikulum, ['method' => 'patch','route' => ['kurikulum.update', $kurikulum->id,'files'=>true]]) !!}
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label no-padding-right">Matakuliah</label>
+					<label class="col-sm-3 control-label no-padding-right">Kode</label>
 					<div class="col-sm-9">
 						<div class="pos-rel">
-							 {!! Form::text('matakuliah', null, array('placeholder' => 'Matakuliah','class' => 'form-control')) !!}
-							 @if ($errors->has('matakuliah'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('matakuliah') }}</strong>
-                                    </span>
-                              @endif
+							 {!! Form::text('kd', null, array('placeholder' => 'kode','class' => 'form-control')) !!}
+							
                               <br/>
 						</div>
 					</div>
@@ -30,16 +25,60 @@
 
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label no-padding-right">Dosen Pengampu</label>
+					<label class="col-sm-3 control-label no-padding-right">Semester</label>
 
 					<div class="col-sm-9">
 						<div class="pos-rel">
-							{!! Form::text('dosen_pengampu', null, array('placeholder' => 'Nama','class' => 'form-control')) !!}
-							 @if ($errors->has('nama_dosen'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('nama_dosen') }}</strong>
-                                    </span>
-                              @endif
+							 <select name="smt" class="form_conrol" >
+							 	<option value="I">I</option>
+							 	<option value="II"> II</option>
+							 </select>
+                   </div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right">Matakuliah</label>
+					<div class="col-sm-9">
+						<div class="pos-rel">
+							 {!! Form::text('matakuliah', null, array('placeholder' => 'Matakuliah','class' => 'form-control')) !!}
+							
+                              <br/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right">Judul Kurikulum</label>
+					<div class="col-sm-9">
+						<div class="pos-rel">
+							 {!! Form::text('judul_kurikulum', null, array('placeholder' => 'Matakuliah','class' => 'form-control')) !!}
+							
+                              <br/>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right">SKS</label>
+
+					<div class="col-sm-9">
+						<div class="pos-rel">
+							{!! Form::text('sks', null, array('placeholder' => 'Nama','class' => 'form-control')) !!}
+							
+                              <br/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right">Jam/Minggu</label>
+
+					<div class="col-sm-9">
+						<div class="pos-rel">
+							{!! Form::text('jam', null, array('placeholder' => 'Nama','class' => 'form-control')) !!}
+							
                               <br/>
 						</div>
 					</div>
@@ -52,51 +91,42 @@
 						<div class="pos-rel">
 							{!! Form::select('nama_jurusan', $jurusan, array('class' => 'form-control')) !!}
                        </div>
-                       <br/>
 					</div>
 				</div>
 
 
-					<div class="form-group">
+				<div class="form-group">
 						<label class="col-sm-3 control-label no-padding-right">Prodi</label>
 					<div class="col-sm-9">
 						<div class="pos-rel">
 							{!! Form::select('prodi', $prodi, array('class' => 'form-control')) !!}
                           
 						</div>
-						<br/>
 					</div>
 				</div>
 
-
-				
 				<div class="form-group">
-					<label class="col-sm-3 control-label no-padding-right">FIle RPS</label>
+						<label class="col-sm-3 control-label no-padding-right">Tahun</label>
+					<div class="col-sm-9">
+						<div class="pos-rel">
+							{!! Form::select('tahun', $tahun, array('class' => 'form-control')) !!}
+                          
+						</div>
+					</div>
+				</div>
+				
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right">RPS</label>
 
 					<div class="col-sm-9">
 						<div class="pos-rel">
-							{!! Form::file('file_rps', null, array('class' => 'form-control')) !!}
-							 
+							{!! Form::file('rps', null, array('class' => 'form-control')) !!}
                               <br/>
 						</div>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label class="col-sm-3 control-label no-padding-right">Tahun</label>
-
-					<div class="col-sm-9">
-						<div class="pos-rel">
-							 <select name="tahun" class="form_control">
-							 <?php $i=2001?>
-							 @while($i<2050)
-							 	<option value="{{$i=$i+1}}">{{$i}} </option>
-							 @endwhile
-							 </select>
-							 
-						</div>
-					</div>
-				</div>
 				
 						<div class="form-group">
 							<div class="col-sm-9">

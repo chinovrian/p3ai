@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.indexx')
 
 @section('content')
 <div class="container">
@@ -8,7 +8,7 @@
                 <div class="panel-heading">Register</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('registrasi') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -23,6 +23,7 @@
                                     </span>
                                 @endif
                             </div>
+                            <br/>
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -37,6 +38,37 @@
                                     </span>
                                 @endif
                             </div>
+                            <br/>
+                        </div>
+
+                         <div class="form-group{{ $errors->has('nip') ? ' has-error' : '' }}">
+                            <label for="nip" class="col-md-4 control-label">Nip</label>
+
+                            <div class="col-md-6">
+                                <input id="nip" type="text" class="form-control" name="nip" required>
+
+                                @if ($errors->has('nip'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('nip') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <br/>
+                        </div>
+
+                         <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label for="username" class="col-md-4 control-label">Username</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control" name="username" required>
+
+                                @if ($errors->has('username'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
@@ -51,6 +83,20 @@
                                     </span>
                                 @endif
                             </div>
+                        </div>
+
+                        <div class="form-group {{ $errors->has('roles') ? ' has-error' : '' }}">
+                            <label for="roles" class="col-md-4 control-label">Level</label>
+                            @foreach($role as $roles)
+                            <div class="col-md-6">
+                                <input type="radio" name="roles" value="{{$roles->id}}">
+                                @if($roles->id==3)
+                                    Kap3ai
+                                @elseif($roles->id==4)
+                                    Dosen
+                                @endif
+                            </div>
+                            @endforeach
                         </div>
 
                         <div class="form-group">

@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.indexx')
 
 @section('content')
       <div class="panel panel-default">
@@ -13,13 +13,25 @@
 				{!! Form::open(array('route' => 'kurikulum.store','method'=>'POST','class'=>'form form-horizontal','files'=>true)) !!}
 
 				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right">Kode</label>
+					<div class="col-sm-9">
+						<div class="pos-rel">
+							 {!! Form::text('kd', null, array('placeholder' => 'kode','class' => 'form-control')) !!}
+							
+                              <br/>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="form-group">
 					<label class="col-sm-3 control-label no-padding-right">Semester</label>
 
 					<div class="col-sm-9">
 						<div class="pos-rel">
 							 <select name="smt" class="form_conrol" >
-							 	<option value="Ganjil"> Ganjil</option>
-							 	<option value="Genap"> Genap</option>
+							 	<option value="I">I</option>
+							 	<option value="II"> II</option>
 							 </select>
                    </div>
 					</div>
@@ -61,6 +73,18 @@
 				</div>
 
 				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right">Jam/Minggu</label>
+
+					<div class="col-sm-9">
+						<div class="pos-rel">
+							{!! Form::text('jam', null, array('placeholder' => 'Nama','class' => 'form-control')) !!}
+							
+                              <br/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
 					<label class="col-sm-3 control-label no-padding-right">jurusan</label>
 
 					<div class="col-sm-9">
@@ -71,7 +95,7 @@
 				</div>
 
 
-					<div class="form-group">
+				<div class="form-group">
 						<label class="col-sm-3 control-label no-padding-right">Prodi</label>
 					<div class="col-sm-9">
 						<div class="pos-rel">
@@ -82,31 +106,15 @@
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label no-padding-right">Tahun</label>
-
+						<label class="col-sm-3 control-label no-padding-right">Tahun</label>
 					<div class="col-sm-9">
 						<div class="pos-rel">
-							 <select name="tahun" class="form_control">
-							 <?php $i=2001?>
-							 @while($i<2050)
-							 	<option value="{{$i=$i+1}}">{{$i}} </option>
-							 @endwhile
-							 </select>
-							 
+							{!! Form::select('tahun', $tahun, array('class' => 'form-control')) !!}
+                          
 						</div>
 					</div>
 				</div>
 				
-				<div class="form-group">
-					<label class="col-sm-3 control-label no-padding-right">Kurikulum</label>
-
-					<div class="col-sm-9">
-						<div class="pos-rel">
-							{!! Form::file('file_kurikulum', null, array('class' => 'form-control')) !!}
-                              <br/>
-						</div>
-					</div>
-				</div>
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label no-padding-right">RPS</label>

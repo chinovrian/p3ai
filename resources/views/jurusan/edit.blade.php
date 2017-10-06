@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.indexx')
 
 @section('content')
       <div class="panel panel-default">
@@ -17,11 +17,7 @@
 					<div class="col-sm-9">
 						<div class="pos-rel">
 							 {!! Form::text('nama_jurusan', null, array('placeholder' => 'Nama_jurusan','class' => 'form-control')) !!}
-							 @if ($errors->has('nip_dosen'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('nama_jurusan') }}</strong>
-                                    </span>
-                              @endif
+							
                               <br/>
 						</div>
 					</div>

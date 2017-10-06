@@ -4,18 +4,19 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
+
 
 class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+   use EntrustUserTrait;
+
+protected $table = 'users';
+
     protected $fillable = [
-        'name_user', 'email','username','password',
+        'name_user', 'email','nip','username','password',
     ];
 
     /**
@@ -34,6 +35,6 @@ class User extends Authenticatable
 
     public function roleuser ()
     {
-        return $this->hasMany('RoleUser::class');
+        return $this->hasMany('App\RoleUser','user_id','id');
     }
 }

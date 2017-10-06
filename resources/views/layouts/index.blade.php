@@ -130,6 +130,8 @@
                     <li><a href="{{ url('/') }}"><i class="menu-icon fa  fa-home"></i>Home</a></li>
                     <li><a href="{{ route('users.index') }}"><i class="menu-icon fa fa-eye"></i>User</a></li>
                     <li><a href="{{ route('roles.index') }}"><i class="menu-icon fa fa-cogs"></i>Roles</a></li>
+                     <li><a href="{{ route('permission.index')}}"><i class="menu-icon fa fa-desktop"></i> Permission</a></li>
+                    <li><a href="{{ route('permissionrole.index')}}"><i class="menu-icon fa fa-desktop"></i> Permission Role</a></li>
                     <li><a href="{{ route('dosen.index') }}"><i class="menu-icon fa fa-users"></i>Data Dosen</a></li>
                     <li><a href="{{ route('kelengkapan.index')}}"><i class="menu-icon fa fa-users"></i>Kelengkapan Dosen</a></li>
 
@@ -140,6 +142,8 @@
                     <li><a href="{{ route('serdos.index')}}"><i class="menu-icon fa fa-list"></i>Sertifikasi Dosen</a></li>
                     <li><a href="{{ route('prodi.index')}}"><i class="menu-icon fa fa-desktop"></i>Data Prodi</a></li>
                     <li><a href="{{ route('jurusan.index')}}"><i class="menu-icon fa fa-desktop"></i> Jurusan</a></li>
+                   
+
 
                   
 

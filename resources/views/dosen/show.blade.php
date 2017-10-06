@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.indexx')
 
 @section('content')
 <div class="container">
@@ -6,21 +6,23 @@
 
       <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="panel panel-default">
-          <div class="panel-heading"><h4>Dosen Management</h4></div>
-          
+          <div class="panel-heading"><h4>Detail</h4></div>
+        
     <div class="panel-body">
           <div class="panel-body">
-            <a class="btn btn-primary" href="{{ route('dosen.edit',$dosen->id) }}">Edit</a>
-            <a class="btn btn-primary" href="{{ route('dosen.index') }}"> Back</a>
+             
+            <a class="btn btn-primary" href="{{ route('dosen.edit',[$dosen->id]) }}">Edit</a>
             <br/>
 
+   
             <div class="col-xs-3 col-sm-3 center">
                 <div class="profile-info-value">
                     <img style="width: 100%" src="{{Storage::url($dosen->foto)}}"/>
                 </div>
             </div>
+
           </div>
-    {!! Form::model($dosen, ['method' => 'patch','route' => ['dosen.show', $dosen->id]]) !!}
+   
     <div class="col-xs-12 col-sm-9">
     <div class="profile-user-info profile-user-info-striped">
             <div class="profile-info-row">
@@ -122,7 +124,7 @@
             <div class="profile-info-row">
                 <div class="profile-info-name"> E-Mail</div>
 
-                <div class="profile-info-value">{{ $dosen->email_dosen}}</div>
+                <div class="profile-info-value">{{ $dosen->email}}</div>
             </div>
 
             <div class="profile-info-row">
@@ -133,8 +135,10 @@
             </div>
 
         </div>
+
+       
         
-{!! Form::close() !!}
+
     </div>
      <div class="profile-info-row">
     </div>
